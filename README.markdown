@@ -36,23 +36,23 @@ Current Alternatives
 
 The current alternatives to the above functionality are:
 
-# Simply return the mutable version of a collection.  Unfortunately this can lead to programming errors, overly defensive
-  programming and long drill-downs into functions to determine if a returned collection can be safely mutated.
+1. Simply return the mutable version of a collection.  Unfortunately this can lead to programming errors, overly defensive
+   programming and long drill-downs into functions to determine if a returned collection can be safely mutated.
 
-# Return a version of a collection wrapped via the `Collections#unmodifiable*` methods.  This suffers from the same
-  problems as the first approach, except that programming errors due to mutation can no longer occur.  Unfortunately, if
-  the owner of the collection wishes to mutate the collection later, they must either maintain two pointers to the
-  collection (one to the readable version and one to the unreadable version) or wrap the collection every time it is
-  passed out.
+2. Return a version of a collection wrapped via the `Collections#unmodifiable*` methods.  This suffers from the same
+   problems as the first approach, except that programming errors due to mutation can no longer occur.  Unfortunately, if
+   the owner of the collection wishes to mutate the collection later, they must either maintain two pointers to the
+   collection (one to the readable version and one to the unreadable version) or wrap the collection every time it is
+   passed out.
 
-# Use java generics to make mutators uncallable.  If you declare a return type of a list to be, say `List<? extends String>`
-  then many of the mutators on the list (e.g. `add()`) will not be callable due to generics constraints.  However, many
-  mutators are still available, such as `clear()`, so this is an unsatisfying solution.
+3. Use java generics to make mutators uncallable.  If you declare a return type of a list to be, say `List<? extends String>`
+   then many of the mutators on the list (e.g. `add()`) will not be callable due to generics constraints.  However, many
+   mutators are still available, such as `clear()`, so this is an unsatisfying solution.
 
-# Write your own immutable classes or wrappers.  This is a possibility, but one of the great features of the Java Collections
-  is that they give everyone in the Java ecosystem a common set of interfaces to work with.  Libraries should communicate
-  to their clients whether collections passing in and out of them are mutated or mutable, and a standardized way to do this
-  is precisely the point of this proposal.
+4. Write your own immutable classes or wrappers.  This is a possibility, but one of the great features of the Java Collections
+   is that they give everyone in the Java ecosystem a common set of interfaces to work with.  Libraries should communicate
+   to their clients whether collections passing in and out of them are mutated or mutable, and a standardized way to do this
+   is precisely the point of this proposal.
 
 None of these solutions are satisfying.
 
