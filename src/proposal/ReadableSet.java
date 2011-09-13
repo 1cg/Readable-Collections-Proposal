@@ -12,8 +12,6 @@ public interface ReadableSet<E> extends ReadableCollection<E> {
 
   <T> T[] toArray(T[] a);
 
-  boolean containsAll(ReadableCollection<?> c);
-
   boolean equals(Object o);
 
   int hashCode();
